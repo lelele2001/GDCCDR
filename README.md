@@ -6,7 +6,7 @@ The source code is official pytorch implementation of GDCCDR (Graph Disentangled
 * torch-sparse == 0.6.13
 * numpy == 1.22.3
 # Datasets
-We use four [Amazon](http://jmcauley.ucsd.edu/data/amazon/) datasets (Sport&Phone, Sport&Cloth, Elec&Phone, Elec&Cloth) to evaluate our GDCCDR and preprocess these datasets following [BI-TGCF](https://github.com/sunshinelium/Bi-TGCF) and DisenCDR.
+We use four [Amazon](http://jmcauley.ucsd.edu/data/amazon/) datasets (Sport&Phone, Sport&Cloth, Elec&Phone, Elec&Cloth) to evaluate our GDCCDR and preprocess these datasets following [BI-TGCF](https://github.com/sunshinelium/Bi-TGCF) and filter out the cold-start items.
 # Training
 You can use these commands to train the model:
 * python main.py --dataset sport_phone --ecl_reg 0.2 --pcl_reg 0.001 --alpha 0.25 --beta 0.03 --layer 6
