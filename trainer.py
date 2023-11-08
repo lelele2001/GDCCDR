@@ -6,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 from evaluate import  HR_NDCG
 from tensorboardX import SummaryWriter
 import time
-from model import SUCCDR
+from model import GDCCDR
 
 def update_lr(opt,config):
     decay_lr = config['decay_lr']
@@ -72,7 +72,7 @@ def train(config):
     eva2 = HR_NDCG(config,datasetB,'B')
 
     ################## Initialization for Training #####################
-    model = SUCCDR(config,datasetA,datasetB).cuda()
+    model = GDCCDR(config,datasetA,datasetB).cuda()
     optimizer = torch.optim.Adam(model.parameters(), lr=config['lr'])
 
     hr_best_A, ndcg_best_A, Best_epoch_A = -1, -1, -1
