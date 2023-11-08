@@ -68,9 +68,9 @@ def l2_loss(*weights):
         loss += torch.sum(torch.pow(w, 2))
     return 0.5*loss
 
-class SUCCDR(nn.Module):
+class GDCCDR(nn.Module):
     def __init__(self, config,datasetA,datasetB):
-        super(SUCCDR, self).__init__()
+        super(GDCCDR, self).__init__()
         self.datasetA = datasetA
         self.datasetB = datasetB
         self.config = config
@@ -292,7 +292,7 @@ class SUCCDR(nn.Module):
         return u_embedding_pri_mean_A,u_embedding_inv_mean_A,i_embedding_A,u_embedding_pri_mean_B,u_embedding_inv_mean_B,i_embedding_B,u_embedding_pri_list_A,u_embedding_pri_list_B
 
 
-    def ssl_loss(self, data1, data2, u_idx):
+    def pcl_loss(self, data1, data2, u_idx):
 
         embeddings1 = F.embedding(u_idx,data1)
         embeddings2 = F.embedding(u_idx,data2)
@@ -358,9 +358,9 @@ class SUCCDR(nn.Module):
                                 torch.norm(self.embedding_item_A(items_pos.long()), p=2).pow(2) +
                                 torch.norm(self.embedding_item_A(items_neg.long()), p=2).pow(2)) / float(len(users))
 
-            loss_ssl = self.ssl_loss(u_emb_inv_A,trans_emb_inv_pos,u_idx)
+            loss_pcl = self.pcl_loss(u_emb_inv_A,trans_emb_inv_pos,u_idx)
 
-            return loss_reg,loss_bpr_all,loss_ecl,loss_ssl
+            return loss_reg,loss_bpr_all,loss_ecl,loss_pcl
 
         if mode=="B":
 
@@ -381,9 +381,9 @@ class SUCCDR(nn.Module):
                                 torch.norm(self.embedding_item_B(items_neg.long()), p=2).pow(2)) / float(len(users))
 
 
-            loss_ssl = self.ssl_loss(u_emb_inv_B,trans_emb_inv_pos,u_idx)
+            loss_pcl = self.pcl_loss(u_emb_inv_B,trans_emb_inv_pos,u_idx)
 
-            return loss_reg,loss_bpr_all,loss_ecl,loss_ssl
+            return loss_reg,loss_bpr_all,loss_ecl,loss_pcl
     def test_Initial(self,mode):
         u_pri_A,u_inv_A,i_A,u_pri_B,u_inv_B,i_B,_,_ = self.inference()
         
