@@ -1,5 +1,15 @@
 # GDCCDR
 The source code is official pytorch implementation of GDCCDR (Graph Disentangled Contrastive Learning with Personalized Transfer for Cross-Domain Recommendation) by Jing Liu, Lele Sun, Weizhi Nie, PeiGuang Jing and Yuting Su.
+```@inproceedings{GDCCDR,
+  title={Graph Disentangled Contrastive Learning with Personalized Transfer for Cross-Domain Recommendation},
+  author={Liu, Jing and Sun, Lele and Nie, Weizhi and Jing, Peiguang and Su, Yuting},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={8},
+  pages={8769--8777},
+  year={2024}
+}
+```
 # Requirements:
 * Python == 3.8.13
 * PyTorch == 1.11.0
